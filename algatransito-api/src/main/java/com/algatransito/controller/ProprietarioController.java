@@ -1,10 +1,9 @@
-package com.algatransito.algatransitoapi.controller;
+package com.algatransito.controller;
 
-import com.algatransito.algatransitoapi.domain.model.Proprietario;
+import com.algatransito.domain.model.Proprietario;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController

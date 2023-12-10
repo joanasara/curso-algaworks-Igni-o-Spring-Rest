@@ -1,4 +1,4 @@
-package com.algatransito.algatransitoapi;
+package com.algatransito;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

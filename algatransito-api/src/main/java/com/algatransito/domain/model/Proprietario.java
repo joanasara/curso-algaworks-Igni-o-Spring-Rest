@@ -1,4 +1,4 @@
-package com.algatransito.algatransitoapi.domain.model;
+package com.algatransito.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
