@@ -2,25 +2,31 @@ package com.algatransito.controller;
 
 import com.algatransito.domain.model.Proprietario;
 import com.algatransito.domain.repository.ProprietarioRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@RequestMapping("/proprietarios")
 public class ProprietarioController {
 
-    //@Autowired ESTA ANOTACAO ELA DEFINE QUE QUEREMOS INJETAR UMA INSTACIA CRIADA PELO SPRING
     private final ProprietarioRepository proprietarioRepository;
 
-
-    @GetMapping("/proprietarios")
+    @GetMapping
     public List<Proprietario> listar() {
-        //return proprietarioRepository.findByNome("a");
         return proprietarioRepository.findAll();
+
+    }
+    @GetMapping("/{proprietarioId}")
+    public ResponseEntity<Proprietario> buscar(@PathVariable Long proprietarioId) {
+        return proprietarioRepository.findById(proprietarioId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
