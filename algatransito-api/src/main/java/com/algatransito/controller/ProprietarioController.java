@@ -20,6 +20,7 @@ public class ProprietarioController {
 
     @GetMapping("/proprietarios")
     public List<Proprietario> listar() {
+        //return proprietarioRepository.findByNome("a");
         return proprietarioRepository.findAll();
     }
 }
