@@ -1,5 +1,6 @@
 package com.algatransito.domain.service;
 
+import com.algatransito.domain.exception.NegocioException;
 import com.algatransito.domain.model.Proprietario;
 import com.algatransito.domain.repository.ProprietarioRepository;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,15 @@ public class RegistroProprietarioService {
 
     @Transactional
     public Proprietario salvar(Proprietario proprietario) {
-       return proprietarioRepository.save(proprietario);
+        boolean emailEmUso = proprietarioRepository.findByEmail(proprietario.getEmail())
+                .filter(p -> !p.equals(proprietario))
+                .isPresent();
+
+        if (emailEmUso) {
+            throw new NegocioException(" Ja existe um proprietario cadastrado com esse email");
+
+        }
+        return proprietarioRepository.save(proprietario);
     }
 
     @Transactional
