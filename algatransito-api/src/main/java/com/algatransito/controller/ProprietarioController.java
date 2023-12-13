@@ -1,5 +1,6 @@
 package com.algatransito.controller;
 
+import com.algatransito.domain.exception.NegocioException;
 import com.algatransito.domain.model.Proprietario;
 import com.algatransito.domain.repository.ProprietarioRepository;
 import com.algatransito.domain.service.RegistroProprietarioService;
@@ -46,7 +47,6 @@ public class ProprietarioController {
         if (proprietarioRepository.existsById(proprietarioId)) {
             return ResponseEntity.notFound().build();
         }
-
         proprietario.setId(proprietarioId);
         Proprietario proprietarioAtualizado = proprietarioService.salvar(proprietario);
 
@@ -61,6 +61,11 @@ public class ProprietarioController {
         proprietarioService.excluir(proprietarioId);
         return ResponseEntity.noContent().build();
 
+    }
+
+    @ExceptionHandler(NegocioException.class)
+    public ResponseEntity<String> capturar(NegocioException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
 }
