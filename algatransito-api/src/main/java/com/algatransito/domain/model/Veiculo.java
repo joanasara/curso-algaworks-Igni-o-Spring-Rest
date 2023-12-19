@@ -1,6 +1,7 @@
 package com.algatransito.domain.model;
 
 import com.algatransito.domain.enums.StatusVeiculoEnum;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,8 +25,12 @@ public class Veiculo {
     private String marca;
     private String modelo;
     private String placa;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY) //Anotacao apenas de leitura de atributo
     @Enumerated(EnumType.STRING)
     private StatusVeiculoEnum status;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataCadastro;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataApreensao;
 }
