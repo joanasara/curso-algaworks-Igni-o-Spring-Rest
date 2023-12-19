@@ -2,6 +2,7 @@ package com.algatransito.domain.service;
 
 import com.algatransito.domain.exception.NegocioException;
 import com.algatransito.domain.model.Proprietario;
+import com.algatransito.domain.model.Veiculo;
 import com.algatransito.domain.repository.ProprietarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class RegistroProprietarioService {
 
     private final ProprietarioRepository proprietarioRepository;
+
+    public Proprietario buscar(Veiculo novoVeiculo) {
+        Proprietario proprietario = proprietarioRepository.findById(novoVeiculo.getProprietario().getId())
+                .orElseThrow(() -> new NegocioException("Proprietario nao encontrado"));
+        return proprietario;
+    }
 
     @Transactional
     public Proprietario salvar(Proprietario proprietario) {
