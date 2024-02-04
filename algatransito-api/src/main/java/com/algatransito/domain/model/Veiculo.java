@@ -45,8 +45,10 @@ public class Veiculo {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) //Anotacao apenas de leitura de atributo
     @Enumerated(EnumType.STRING)
     private StatusVeiculoEnum status;
+
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataCadastro;
+    
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataApreensao;
 }
