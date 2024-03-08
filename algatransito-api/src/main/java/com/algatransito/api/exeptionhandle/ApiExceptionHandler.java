@@ -1,4 +1,4 @@
-package com.algatransito.exceptionhandler;
+package com.algatransito.api.exeptionhandle;
 
 import com.algatransito.domain.exception.NegocioException;
 import org.springframework.http.HttpHeaders;

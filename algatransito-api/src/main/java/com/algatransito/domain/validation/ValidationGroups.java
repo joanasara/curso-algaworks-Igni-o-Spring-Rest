@@ -1,4 +1,4 @@
-package com.algatransito.validation;
+package com.algatransito.domain.validation;
 
 public class ValidationGroups {
 

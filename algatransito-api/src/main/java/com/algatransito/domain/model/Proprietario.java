@@ -1,6 +1,6 @@
 package com.algatransito.domain.model;
 
-import com.algatransito.validation.ValidationGroups;
+import com.algatransito.domain.validation.ValidationGroups;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

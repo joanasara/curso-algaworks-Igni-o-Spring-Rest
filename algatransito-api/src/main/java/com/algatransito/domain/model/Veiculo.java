@@ -1,7 +1,7 @@
 package com.algatransito.domain.model;
 
 import com.algatransito.domain.enums.StatusVeiculoEnum;
-import com.algatransito.validation.ValidationGroups;
+import com.algatransito.domain.validation.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -13,7 +13,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 @Getter

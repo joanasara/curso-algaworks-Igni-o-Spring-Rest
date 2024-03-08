@@ -1,4 +1,4 @@
-package com.algatransito.controller;
+package com.algatransito.api.controller;
 
 import com.algatransito.domain.model.Proprietario;
 import com.algatransito.domain.repository.ProprietarioRepository;
