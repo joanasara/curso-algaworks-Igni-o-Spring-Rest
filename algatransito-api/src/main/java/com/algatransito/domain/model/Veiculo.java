@@ -50,10 +50,19 @@ public class Veiculo {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime dataCadastro;
-    
+
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime dataApreensao;
 
     @OneToMany
     private List<Autuacao> autuacaes = new ArrayList<>();
+
+    public Autuacao adicionarAutuacao(Autuacao autuacao) {
+        autuacao.setDataOcorrencia(OffsetDateTime.now());
+        autuacao.setVeiculo(this);
+        getAutuacaes().add(autuacao);
+        return autuacao;
+    }
+
+
 }
