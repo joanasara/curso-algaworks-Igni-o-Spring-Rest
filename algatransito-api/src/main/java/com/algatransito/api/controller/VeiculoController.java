@@ -1,6 +1,8 @@
 package com.algatransito.api.controller;
 
 import com.algatransito.api.assembler.VeiculoAssembler;
+import com.algatransito.api.model.VeiculoModel;
+import com.algatransito.api.model.input.VeiculoInput;
 import com.algatransito.domain.model.Veiculo;
 import com.algatransito.domain.repository.VeiculoRepository;
 import com.algatransito.domain.service.RegistroVeiculoService;
@@ -22,23 +24,21 @@ public class VeiculoController {
     private final RegistroVeiculoService veiculoService;
 
     @GetMapping
-    public List<com.algatransito.api.model.VeiculoModel> listar() {
+    public List<VeiculoModel> listar() {
         return veiculoAssembler.toCollectionModel(veiculoRepository.findAll());
-
     }
-
     @GetMapping("/{veiculoId}")
-    public ResponseEntity<com.algatransito.api.model.VeiculoModel> buscar(@PathVariable Long veiculoId) {
-
+    public ResponseEntity<VeiculoModel> buscar(@PathVariable Long veiculoId) {
         return veiculoRepository.findById(veiculoId)
                 .map(veiculoAssembler::toModel)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public com.algatransito.api.model.VeiculoModel cadastrar(@Valid @RequestBody Veiculo veiculo) {
-        return veiculoAssembler.toModel(veiculoService.cadastrar(veiculo));
+    public VeiculoModel cadastrar(@Valid @RequestBody VeiculoInput veiculoInput) {
+        Veiculo novoVeiculo = veiculoAssembler.toEntity(veiculoInput);
+        Veiculo veiculoCadastrado = veiculoService.cadastrar(novoVeiculo);
+        return veiculoAssembler.toModel(veiculoCadastrado);
     }
 }
