@@ -1,6 +1,7 @@
 package com.algatransito.domain.service;
 
 import com.algatransito.domain.enums.StatusVeiculoEnum;
+import com.algatransito.domain.exception.EntidadeNaoEncontradaException;
 import com.algatransito.domain.exception.NegocioException;
 import com.algatransito.domain.model.Proprietario;
 import com.algatransito.domain.model.Veiculo;
@@ -22,7 +23,7 @@ public class RegistroVeiculoService {
 
     public Veiculo buscar(Long veiculoId) {
         return veiculoRepository.findById(veiculoId)
-                .orElseThrow(() -> new NegocioException("Veiculo nao encontrado"));
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Veiculo nao encontrado"));
     }
 
     @Transactional
